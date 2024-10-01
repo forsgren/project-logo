@@ -3,7 +3,7 @@
     "displayName": "Project Logo",
     "icon": "images/icon.png",
     "description": "Displays a logo in the sidebar",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "forsgren",
     "repository": {
         "type": "git",
