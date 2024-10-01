@@ -47,15 +47,26 @@ class LogoViewProvider implements vscode.WebviewViewProvider {
         if (workspaceFolders) {
             const rootPath = workspaceFolders[0].uri.fsPath;
 
-            // start by checking in .vscode/
-            const logoPathVscode = path.join(
-                rootPath,
-                ".vscode",
-                "project-logo.svg"
-            );
+            const logoPaths = {
+                svg: path.join(rootPath, ".vscode", "project-logo.svg"),
+                png: path.join(rootPath, ".vscode", "project-logo.png"),
+                jpg: path.join(rootPath, ".vscode", "project-logo.jpg"),
+                jpeg: path.join(rootPath, ".vscode", "project-logo.jpeg"),
+            };
 
-            if (fs.existsSync(logoPathVscode)) {
-                return fs.existsSync(logoPathVscode);
+            if (fs.existsSync(logoPaths.svg)) {
+                return fs.existsSync(logoPaths.svg);
+            }
+            if (fs.existsSync(logoPaths.png)) {
+                return fs.existsSync(logoPaths.png);
+            }
+
+            if (fs.existsSync(logoPaths.jpg)) {
+                return fs.existsSync(logoPaths.jpg);
+            }
+
+            if (fs.existsSync(logoPaths.jpeg)) {
+                return fs.existsSync(logoPaths.jpeg);
             }
 
             return false;
@@ -63,13 +74,41 @@ class LogoViewProvider implements vscode.WebviewViewProvider {
         return false;
     }
 
-    private _getHtmlForWebview(webview: vscode.Webview) {
+    private getLogoPath(): string | null {
         const workspaceFolders = vscode.workspace.workspaceFolders;
 
         if (workspaceFolders) {
             const rootPath = workspaceFolders[0].uri.fsPath;
-            const logoPath = path.join(rootPath, ".vscode", "project-logo.svg");
 
+            const logoPaths = {
+                svg: path.join(rootPath, ".vscode", "project-logo.svg"),
+                png: path.join(rootPath, ".vscode", "project-logo.png"),
+                jpg: path.join(rootPath, ".vscode", "project-logo.jpg"),
+                jpeg: path.join(rootPath, ".vscode", "project-logo.jpeg"),
+            };
+
+            if (fs.existsSync(logoPaths.svg)) {
+                return logoPaths.svg;
+            }
+            if (fs.existsSync(logoPaths.png)) {
+                return logoPaths.png;
+            }
+            if (fs.existsSync(logoPaths.jpg)) {
+                return logoPaths.jpg;
+            }
+            if (fs.existsSync(logoPaths.jpeg)) {
+                return logoPaths.jpeg;
+            }
+        }
+        return null;
+    }
+
+    private _getHtmlForWebview(webview: vscode.Webview) {
+        const workspaceFolders = vscode.workspace.workspaceFolders;
+
+        const logoPath = this.getLogoPath();
+
+        if (!!logoPath && workspaceFolders) {
             if (fs.existsSync(logoPath)) {
                 const logoUri = webview.asWebviewUri(vscode.Uri.file(logoPath));
                 return `<!DOCTYPE html>
