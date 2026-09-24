@@ -8,24 +8,28 @@ I'd recommend using a logo that goes well with both light and dark themes, a way
 
 ## Change Log
 
+### 1.2.0
+
+- Changed how logo is loaded to solve a bug that could cause logo to not be loaded
+
 ### 1.1.0
 
--   Adding support for png, jpg and jpeg images
+- Adding support for png, jpg and jpeg images
 
 ### 1.0.3
 
--   Updated readme
+- Updated readme
 
 ### 1.0.2
 
--   Updating the extension description
+- Updating the extension description
 
 ### 1.0.1
 
--   Added a high resolution icon
+- Added a high resolution icon
 
 ### 1.0.0
 
--   Initial release
--   Fetching project-logo.svg from the .vscode folder
--   Displaying logo in the explorer view
+- Initial release
+- Fetching project-logo.svg from the .vscode folder
+- Displaying logo in the explorer view

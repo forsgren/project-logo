@@ -4,34 +4,40 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-09-24
+
+### Fixed
+
+- Changed how logo is loaded to solve a bug that could cause logo to not be loaded
+
 ## [1.1.0] - 2024-10-01
 
 ### Added
 
--   Adding support for png, jpg and jpeg images
+- Adding support for png, jpg and jpeg images
 
 ## [1.0.3] - 2024-10-01
 
 ### Added
 
--   Updating the readme
+- Updating the readme
 
 ## [1.0.2] - 2024-10-01
 
 ### Added
 
--   Updating the extension description
+- Updating the extension description
 
 ## [1.0.1] - 2024-10-01
 
 ### Added
 
--   High resolution icon
+- High resolution icon
 
 ## [1.0.0] - 2024-10-01
 
 ### Added
 
--   Initial release
--   Fetching project-logo.svg from the .vscode folder
--   Displaying logo in the explorer view
+- Initial release
+- Fetching project-logo.svg from the .vscode folder
+- Displaying logo in the explorer view

@@ -15,17 +15,6 @@ class LogoViewProvider implements vscode.WebviewViewProvider {
     ) {
         this._view = webviewView;
 
-        webviewView.webview.options = {
-            enableScripts: true,
-            localResourceRoots: [
-                vscode.Uri.file(
-                    path.dirname(
-                        vscode.workspace.workspaceFolders![0].uri.fsPath
-                    )
-                ),
-            ],
-        };
-
         this.updateWebview(webviewView);
 
         // Listen for when the workspace folders change
@@ -35,6 +24,14 @@ class LogoViewProvider implements vscode.WebviewViewProvider {
     }
 
     private updateWebview(webviewView: vscode.WebviewView) {
+        // No folder open (e.g. empty window) means no logo roots, not a crash
+        const rootFolder = vscode.workspace.workspaceFolders?.[0];
+        webviewView.webview.options = {
+            localResourceRoots: rootFolder
+                ? [vscode.Uri.joinPath(rootFolder.uri, ".vscode")]
+                : [],
+        };
+
         const hasLogo = this.checkForLogo();
         webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
