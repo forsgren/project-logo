@@ -3,7 +3,7 @@
     "displayName": "Project Logo",
     "icon": "images/icon.png",
     "description": "Displays a image or logo from the .vscode folder in the sidebar. This is useful for quickly identifying separate projects in different windows from each other.",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "publisher": "forsgren",
     "repository": {
         "type": "git",
@@ -26,7 +26,8 @@
                 {
                     "type": "webview",
                     "id": "projectLogo",
-                    "name": "Project Logo"
+                    "name": "Project Logo",
+                    "icon": "images/pl-icon.svg"
                 }
             ]
         },
@@ -43,7 +44,7 @@
     },
     "devDependencies": {
         "@types/mocha": "^10.0.6",
-        "@types/node": "20.x",
+        "@types/node": "^20.19.43",
         "@types/vscode": "^1.90.0",
         "@vscode/test-cli": "^0.0.15",
         "@vscode/test-electron": "^3.1.0",

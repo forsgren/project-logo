@@ -8,6 +8,10 @@ I'd recommend using a logo that goes well with both light and dark themes, a way
 
 ## Change Log
 
+### 1.2.1
+
+- Added an icon to the Project Logo view. This is only shown when the view is moved to the activity bar or when name can't be displayed
+
 ### 1.2.0
 
 - Changed how logo is loaded to solve a bug that could cause logo to not be loaded
