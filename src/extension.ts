@@ -14,13 +14,18 @@ class LogoViewProvider implements vscode.WebviewViewProvider {
         _token: vscode.CancellationToken
     ) {
         this._view = webviewView;
+        webviewView.onDidDispose(() => {
+            this._view = undefined;
+        });
 
         this.updateWebview(webviewView);
+    }
 
-        // Listen for when the workspace folders change
-        vscode.workspace.onDidChangeWorkspaceFolders(() => {
-            this.updateWebview(webviewView);
-        });
+    // Re-render the live view when the workspace changes
+    public refresh() {
+        if (this._view) {
+            this.updateWebview(this._view);
+        }
     }
 
     private updateWebview(webviewView: vscode.WebviewView) {
@@ -32,11 +37,7 @@ class LogoViewProvider implements vscode.WebviewViewProvider {
                 : [],
         };
 
-        const hasLogo = this.checkForLogo();
         webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
-
-        // Set visibility based on logo existence
-        webviewView.show(hasLogo);
     }
 
     private checkForLogo(): boolean {
@@ -141,13 +142,9 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.registerWebviewViewProvider(
             LogoViewProvider.viewType,
             provider
-        )
+        ),
+        vscode.workspace.onDidChangeWorkspaceFolders(() => provider.refresh())
     );
-
-    // Update view when workspace folders change
-    vscode.workspace.onDidChangeWorkspaceFolders(() => {
-        vscode.commands.executeCommand("workbench.view.explorer");
-    });
 }
 
 // This method is called when your extension is deactivated
