@@ -1,15 +1,16 @@
 import * as assert from "assert";
-
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
+import * as path from "path";
 import * as vscode from "vscode";
-// import * as myExtension from '../../extension';
+import { findLogoUri } from "../extension";
 
 suite("Extension Test Suite", () => {
-    vscode.window.showInformationMessage("Start all tests.");
-
-    test("Sample test", () => {
-        assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-        assert.strictEqual(-1, [1, 2, 3].indexOf(0));
+    // The test run opens this repo, whose .vscode/project-logo.svg is the fixture
+    test("findLogoUri finds the workspace's .vscode/project-logo.svg", () => {
+        const rootPath = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
+        assert.ok(rootPath, "expected a workspace folder to be open");
+        assert.strictEqual(
+            findLogoUri()?.fsPath,
+            path.join(rootPath, ".vscode", "project-logo.svg")
+        );
     });
 });
