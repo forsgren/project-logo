@@ -8,6 +8,12 @@ I'd recommend using a logo that goes well with both light and dark themes, a way
 
 ## Change Log
 
+### 1.2.2
+
+- Adding or removing a workspace folder no longer pulls you away from your current view to the Explorer
+- The Project Logo view no longer grabs keyboard focus when there is no logo
+- Improved stability when the view is hidden and shown again
+
 ### 1.2.1
 
 - Added an icon to the Project Logo view. This is only shown when the view is moved to the activity bar or when name can't be displayed
